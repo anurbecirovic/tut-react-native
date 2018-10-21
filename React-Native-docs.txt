@@ -1,0 +1,12 @@
+Full list about the supported properties, the following cheat sheet will be useful to you: https://github.com/vhpoet/react-native-styling-cheat-sheet
+Guide to flexbox: https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+
+Ako trebamo vratiti neki argument koristimo : 
+placeNameChangedHandler = val => {/*CODE*/}
+Ako ne vracamo nista (void): 
+onPressLearnMore = () => {/*CODE*/}
+
+Ako zelimo odma vratiti sta god zelimo iz funkcije koristimo
+const listItem = () => ( /*CODE*/);
+
+Za fukncije veoma bitno: If we use = () => {} syntacs this is refered to class App if we use placename() {} it will not be refered

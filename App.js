@@ -1,27 +1,34 @@
 import React, { Component } from 'react';
 //Import statement with Component
-import { StyleSheet, TextInput, View, Text } from 'react-native';
+import {
+  StyleSheet,
+  TextInput,
+  View,
+  Text,
+  Button
+} from 'react-native';
+import PlaceInput from './src/components/PlaceInput/PlaceInput';
+import PlaceList from './src/components/PlaceListComponent/PlaceListComponent';
+
+
 export default class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { text: '' };
-  }
-  //If we use = () => {} syntacs this is refered to class App if we use placename() {} it will not be refered
-  placeNameChangedHandler = val => {
-    this.setState({
-      text: val
-    })
+  state = {
+    places: []
+  };
+
+  onAddedHandler = placeName => {
+    this.setState(prevState => {
+      return {
+        places: prevState.places.concat(placeName)
+      };
+    });
   }
 
   render() {
     return (
-      <View style = {styles.container}>
-        <TextInput
-          style={{ width: 300}}
-          value={this.state.text}
-          onChangeText = {this.placeNameChangedHandler}
-        />
-        <Text>{this.state.text}</Text>
+      <View style={styles.container}>
+        <PlaceInput onPlaceAdded={this.onAddedHandler} />
+        <PlaceList places={this.state.places}/>
       </View>
     );
   }
@@ -29,10 +36,9 @@ export default class App extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
-    padding: 20,
+    flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
-  },
+    justifyContent: 'flex-start'
+  }
 });
