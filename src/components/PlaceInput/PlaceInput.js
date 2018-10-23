@@ -2,8 +2,7 @@ import React, {Component} from 'react';
 import {View, TextInput, Button,StyleSheet} from 'react-native';
 class PlaceInput extends Component {
   state = {
-    placeName: "",
-    places: []
+    placeName: ""
   };
   
   placeNameChangedHandler = val => {
@@ -12,7 +11,7 @@ class PlaceInput extends Component {
     })
   }
 
-  onPressAdd = () => {
+  placeSubmitHandler = () => {
     if (this.state.placeName.trim() === "") {
       return;
     }
@@ -30,7 +29,7 @@ class PlaceInput extends Component {
             />
             <Button
               style={styles.button}
-              onPress={this.onPressAdd}
+              onPress={this.placeSubmitHandler}
               title="Add"
               color="#841584"
               accessibilityLabel="Button for adding new Place"

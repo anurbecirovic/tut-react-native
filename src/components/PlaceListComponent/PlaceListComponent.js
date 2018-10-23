@@ -1,15 +1,14 @@
 import React from 'react';
-import { Text ,View, StyleSheet } from 'react-native';
+import {View, StyleSheet } from 'react-native';
 import ListItem from '../ListItem/ListItem'
 
 const placeList = props => {
-    const placesOutput = props.places.map((place, i) => {
-        <ListItem key={i} placeName={place} />
-    });
+    const placesOutput = props.places.map((place, i) => (
+        <ListItem key={i} placeName={place} onItemPressed={()=> alert('Item pressed')} />
+    ));
 
     return (
         <View style={styles.listContainer}>
-        <Text>PROBA 123</Text>
         {placesOutput}
         </View>
     );
