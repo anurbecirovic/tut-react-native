@@ -1,26 +1,29 @@
 import React, { Component } from "react";
-import {Modal, View, Image, Text, Button, StyleSheet} from 'react-native';
-
-const placeDetail = props =>  {
+import { Modal, View, Image, Text, Button, StyleSheet, TouchableOpacity } from 'react-native';
+import {Ionicons} from '@expo/vector-icons'
+const placeDetail = props => {
     let modalContent = null;
-    if (props.selectedPlace){
-        modalContent= (
+    if (props.selectedPlace) {
+        modalContent = (
             <View>
-            <Image source={props.selectedPlace ? props.selectedPlace.image: null} style={styles.placeImage}/>
-            <Text style={styles.placeName}>{props.selectedPlace ? props.selectedPlace.name: null}</Text>
+                <Image source={props.selectedPlace ? props.selectedPlace.image : null} style={styles.placeImage} />
+                <Text style={styles.placeName}>{props.selectedPlace ? props.selectedPlace.name : null}</Text>
             </View>
         );
     }
     return (
-    <Modal visible={props.selectedPlace !== null} animationType="slide" onRequestClose={props.onModalClosed}>
-        <View style={styles.modalContainer}>
-            {modalContent}
-            <View>
-                <Button title="Delete" color="red" onPress={props.onItemDeleted}/>
-                <Button title="Close" color="lightblue" onPress={props.onModalClosed}/>
+        <Modal visible={props.selectedPlace !== null} animationType="slide" onRequestClose={props.onModalClosed}>
+            <View style={styles.modalContainer}>
+                {modalContent}
+                <View>
+                    <TouchableOpacity onPress={props.onItemDeleted} style={styles.deleteIcon}>
+                        <Ionicons name="md-trash" size={30} color="red" />
+                        {/* <Button title="Delete" color="red" onPress={props.onItemDeleted} /> */}
+                    </TouchableOpacity>
+                    <Button title="Close" color="lightblue" onPress={props.onModalClosed} />
+                </View>
             </View>
-        </View>
-    </Modal>
+        </Modal>
     );
 }
 const styles = StyleSheet.create({
@@ -33,8 +36,12 @@ const styles = StyleSheet.create({
     },
     placeName: {
         fontWeight: "bold",
-        textAlign: "center", 
+        textAlign: "center",
         fontSize: 28
+    },
+    deleteIcon: {
+        justifyContent: "center",
+        alignItems: "center"
     }
 });
 
